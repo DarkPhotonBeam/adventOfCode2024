@@ -7,4 +7,6 @@ add_executable(adventOfCode2024 src/main.c
         src/day1.c
         src/day1.h
         src/helpers.c
-        src/helpers.h)
+        src/helpers.h
+        src/arrayList.h
+)
