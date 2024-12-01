@@ -33,7 +33,7 @@ inline void al_push(array_list *list, void *data) {
     list->data[list->size++] = data;
 }
 
-inline void *pop(array_list *list) {
+inline void *al_pop(array_list *list) {
     if (list->size == 0) return NULL;
     void *obj = list->data[--(list->size)];
     if (list->size <= (list->capacity >> 1)) {
@@ -45,6 +45,10 @@ inline void *pop(array_list *list) {
 
 inline void *al_get(const array_list *list, const size_t index) {
     return list->data[index];
+}
+
+inline void al_set(const array_list *list, const size_t index, void *data) {
+    list->data[index] = data;
 }
 
 inline void al_destroy(array_list *list) {
