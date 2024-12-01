@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #define ARRAY_LIST_INITIAL_CAPACITY 16
+#define ARRAY_LIST_MIN_CAPACITY 4
 
 // TODO: Unit Tests
 
@@ -17,43 +18,15 @@ typedef struct {
     void **data;
 } array_list;
 
-inline array_list *al_create() {
-    array_list *list = malloc(sizeof(array_list));
-    list->size = 0;
-    list->capacity = ARRAY_LIST_INITIAL_CAPACITY;
-    list->data = malloc( ARRAY_LIST_INITIAL_CAPACITY * sizeof(void *) );
-    return list;
-}
+array_list *al_create();
 
-inline void al_push(array_list *list, void *data) {
-    if (list->size >= list->capacity) {
-        list->capacity = list->capacity << 1;
-        list->data = (void **)realloc(list->data, list->capacity * sizeof(void *));
-    }
-    list->data[list->size++] = data;
-}
-
-inline void *al_pop(array_list *list) {
-    if (list->size == 0) return NULL;
-    void *obj = list->data[--(list->size)];
-    if (list->size <= (list->capacity >> 1)) {
-        list->capacity >>= 1;
-        list->data = (void **)realloc(list->data, list->capacity * sizeof(void *));
-    }
-    return obj;
-}
-
-inline void *al_get(const array_list *list, const size_t index) {
-    return list->data[index];
-}
-
-inline void al_set(const array_list *list, const size_t index, void *data) {
-    list->data[index] = data;
-}
-
-inline void al_destroy(array_list *list) {
-    free(list->data);
-    free(list);
-}
+void al_push(array_list *list, void *data);
+void *al_pop(array_list *list);
+void *al_get(const array_list *list, const size_t index);
+void al_set(const array_list *list, const size_t index, void *data);
+void al_destroy(array_list *list);
+void al_print(const array_list *list, void (*print)(void *item));
+void al_free(const array_list *list);
+void al_qsort(const array_list *list, __compar_fn_t cmp_fn);
 
 #endif //ARRAYLIST_H

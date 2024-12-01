@@ -11,6 +11,18 @@ int cmp_int(const void *a, const void *b) {
     return *(int *)a - *(int *)b;
 }
 
+int cmp_int_rev(const void *a, const void *b) {
+    return -cmp_int(a, b);
+}
+
+int cmp_long(const void *a, const void *b) {
+    return (int)(*(long *)a - *(long *)b);
+}
+
+int cmp_long_rev(const void *a, const void *b) {
+    return -cmp_long(a, b);
+}
+
 void findMinMax(int *arr, const size_t size, int *min, int *max) {
     int currMin = INT_MAX;
     int currMax = INT_MIN;
