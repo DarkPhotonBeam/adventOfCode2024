@@ -3,8 +3,8 @@ project(adventOfCode2024 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(adventOfCode2024 main.c
-        day1.c
-        day1.h
-        helpers.c
-        helpers.h)
+add_executable(adventOfCode2024 src/main.c
+        src/day1.c
+        src/day1.h
+        src/helpers.c
+        src/helpers.h)
