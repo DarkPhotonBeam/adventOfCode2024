@@ -80,5 +80,9 @@ void ll_destroy(linked_list *list);
 // Prints the linked list. print_mode determines formatting of data (LL_PM_INT, LL_PM_DOUBLE, LL_PM_LONG, LL_PM_PTR)
 void ll_print(const linked_list *list, ll_print_mode print_mode);
 
+// Creates and allocates memory for an array corresponding to the linked list
+ll_data *ll_array(const linked_list *list);
+
+void ll_setFromArray(linked_list *list, ll_data *arr, size_t size);
 
 #endif //LINKEDLIST_H

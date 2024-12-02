@@ -189,3 +189,33 @@ void ll_print(const linked_list *list, const ll_print_mode print_mode) {
     }
     printf("]\n");
 }
+
+ll_data *ll_array(const linked_list *list) {
+    ll_data *arr = malloc( list->size * sizeof(ll_data) );
+    ll_node *curr = list->tail;
+    size_t i = 0;
+    while (curr != NULL) {
+        arr[i++] = curr->data;
+        curr = curr->next;
+    }
+    return arr;
+}
+
+void ll_setFromArray(linked_list *list, ll_data *arr, size_t size) {
+    long diff = (long)(list->size - size);
+    if (diff > 0) {
+        for (long i = 0; i < diff; ++i) {
+            ll_delete(list, list->size-1);
+        }
+    }
+    if (diff < 0) {
+        for (long i = 0; i < -diff; ++i) {
+            ll_add(list, arr[size+diff+i]);
+        }
+    }
+    ll_node *curr = list->tail;
+    for (long i = 0; i < (size < list->size+diff ? size : list->size+diff); ++i) {
+        curr->data = arr[i];
+        curr = curr->next;
+    }
+}

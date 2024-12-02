@@ -83,6 +83,19 @@ void testLinkedList() {
     ll_data num = {.intVal = 10000};
     ll_insert(list, num, 3);
     ll_print(list, LL_PM_INT);
+
+    ll_data *arr = ll_array(list);
+
+    for (int i = 0; i < list->size; ++i) {
+        printf("%d\n", arr[i].intVal);
+    }
+
+    ll_data iArr[7] = {1, 2, 3, 4, 5, 6, 7};
+    ll_setFromArray(list, iArr, 7);
+    free(arr);
+
+    ll_print(list, LL_PM_INT);
+
     ll_delete(list, 3);
     ll_print(list, LL_PM_INT);
     ll_delete(list, 3);
