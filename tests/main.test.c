@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "../src/arrayList.h"
+#include "../src/hashMap.h"
 #include "../src/linkedList.h"
 #include "../src/helpers.h"
 
@@ -118,18 +119,6 @@ int main(void) {
     testArrayList();
     testArrayListProgram();
     testLinkedList();
-
-    array_list list = al_init();
-    al_allocate(&list);
-
-    al_pushPtr(&list, "hello");
-    al_pushPtr(&list, "world");
-    al_pushPtr(&list, "it's");
-    al_pushPtr(&list, "me");
-
-    al_print(&list, AL_PM_STRING);
-
-    al_freeArray(&list);
 
     return 0;
 }

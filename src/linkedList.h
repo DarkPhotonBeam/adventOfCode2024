@@ -65,6 +65,10 @@ ll_data ll_delete(linked_list *list, size_t index);
 // Returns the data in the node at the specified index
 ll_data ll_getData(linked_list *list, size_t index);
 
+void ll_setData(linked_list *list, size_t index, ll_data data);
+
+void ll_setInt(linked_list *list, size_t index, int data);
+
 // Removes and frees the first/tail node of the linked list and returns data of removed node
 ll_data ll_removeFirst(linked_list *list);
 

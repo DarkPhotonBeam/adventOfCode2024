@@ -32,6 +32,12 @@ void al_pushLong(array_list *list, const long data) {
     al_push(list, d);
 }
 
+void al_pushInt(array_list *list, const int data) {
+    al_data d;
+    d.intVal = data;
+    al_push(list, d);
+}
+
 void al_pushPtr(array_list *list, void *data) {
     al_data d;
     d.ptr = data;

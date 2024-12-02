@@ -115,6 +115,17 @@ ll_data ll_getData(linked_list *list, const size_t index) {
     return ll_get(list, index)->data;
 }
 
+void ll_setData(linked_list *list, size_t index, ll_data data) {
+    ll_node *node = ll_get(list, index);
+    node->data = data;
+}
+
+void ll_setInt(linked_list *list, size_t index, int data) {
+    ll_data d;
+    d.intVal = data;
+    ll_setData(list, index, d);
+}
+
 ll_data ll_delete(linked_list *list, size_t index) {
     ll_data d = {};
     if (list->size == 0) return d;

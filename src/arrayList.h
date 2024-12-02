@@ -50,6 +50,8 @@ void al_push(array_list *list, al_data data);
 
 void al_pushLong(array_list *list, long data);
 
+void al_pushInt(array_list *list, int data);
+
 void al_pushPtr(array_list *list, void *data);
 
 al_data al_pop(array_list *list);

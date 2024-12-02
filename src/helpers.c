@@ -23,6 +23,10 @@ int cmp_long_rev(const void *a, const void *b) {
     return -cmp_long(a, b);
 }
 
+int sgn_cmp(int a, int b) {
+    return (a < 0 && b < 0) || (a >= 0 && b >= 0);
+}
+
 void findMinMax(int *arr, const size_t size, int *min, int *max) {
     int currMin = INT_MAX;
     int currMax = INT_MIN;
