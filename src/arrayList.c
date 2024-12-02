@@ -10,54 +10,93 @@ array_list *al_create() {
     array_list *list = malloc(sizeof(array_list));
     list->size = 0;
     list->capacity = ARRAY_LIST_INITIAL_CAPACITY;
-    list->data = malloc( ARRAY_LIST_INITIAL_CAPACITY * sizeof(void *) );
+    al_allocate(list);
     return list;
 }
 
-void al_push(array_list *list, void *data) {
+void al_allocate(array_list *list) {
+    list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(void *));
+}
+
+void al_push(array_list *list, const al_data data) {
     if (list->size >= list->capacity) {
         list->capacity = list->capacity << 1;
-        list->data = (void **)realloc(list->data, list->capacity * sizeof(void *));
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
     }
     list->data[list->size++] = data;
 }
 
-void *al_pop(array_list *list) {
-    if (list->size == 0) return NULL;
-    void *obj = list->data[--(list->size)];
-    if (list->size <= (list->capacity >> 1) && list->capacity > ARRAY_LIST_MIN_CAPACITY) {
-        list->capacity >>= 1;
-        list->data = (void **)realloc(list->data, list->capacity * sizeof(void *));
-    }
-    return obj;
+void al_pushLong(array_list *list, const long data) {
+    al_data d;
+    d.longVal = data;
+    al_push(list, d);
 }
 
-void *al_get(const array_list *list, const size_t index) {
+void al_pushPtr(array_list *list, void *data) {
+    al_data d;
+    d.ptr = data;
+    al_push(list, d);
+}
+
+al_data al_pop(array_list *list) {
+    const al_data nullData = {.longVal = 0};
+    if (list->size == 0) return nullData;
+    const al_data data = list->data[--(list->size)];
+    if (list->size <= (list->capacity >> 1) && list->capacity > ARRAY_LIST_MIN_CAPACITY) {
+        list->capacity >>= 1;
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
+    }
+    return data;
+}
+
+al_data al_get(const array_list *list, const size_t index) {
     return list->data[index];
 }
 
-void al_set(const array_list *list, const size_t index, void *data) {
+void al_set(const array_list *list, const size_t index, const al_data data) {
     list->data[index] = data;
 }
 
-void al_destroy(array_list *list) {
+void al_freeArray(const array_list *list) {
     free(list->data);
+}
+
+void al_destroy(array_list *list) {
+    al_freeArray(list);
     free(list);
 }
 
-void al_print(const array_list *list, void (*print)(void *item)) {
+void al_print(const array_list *list, al_print_mode print_mode) {
     printf("[");
     for (unsigned int i = 0; i < list->size; ++i) {
-        print(list->data[i]);
+        const al_data data = list->data[i];
+        switch (print_mode) {
+            case AL_PM_INT:
+                printf("%d", data.intVal);
+                break;
+            case AL_PM_FLOAT:
+            case AL_PM_DOUBLE:
+                printf("%f", data.floatVal);
+                break;
+            case AL_PM_CHAR:
+                printf("%c", data.charVal);
+                break;
+            case AL_PM_PTR:
+                printf("%p", data.ptr);
+                break;
+            case AL_PM_LONG:
+                printf("%ld", data.longVal);
+                break;
+            case AL_PM_SHORT:
+                printf("%hd", data.shortVal);
+                break;
+            case AL_PM_STRING:
+                printf("%s", (char *) data.ptr);
+                break;
+        }
         if (i != (list->size - 1)) printf(", ");
     }
     printf("]\n");
-}
-
-void al_free(const array_list *list) {
-    for (unsigned int i = 0; i < list->size; ++i) {
-        free(list->data[i]);
-    }
 }
 
 void al_qsort(const array_list *list, const __compar_fn_t cmp_fn) {

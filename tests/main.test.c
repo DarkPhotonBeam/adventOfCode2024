@@ -18,12 +18,12 @@ void testArrayList() {
     const size_t initialCapacity = list->capacity;
     assert(list->size == 0);
     for (unsigned int i = 0; i < initialCapacity; i++) {
-        al_push(list, NULL);
+        al_pushLong(list, 0);
         assert(list->size == i + 1);
     }
     assert(list->size == initialCapacity);
     assert(list->capacity == initialCapacity);
-    al_push(list, NULL);
+    al_pushLong(list, 0);
     assert(list->capacity == (initialCapacity<<1));
     al_pop(list);
     assert(list->capacity == initialCapacity);
@@ -34,49 +34,47 @@ void testArrayList() {
 
 void testArrayListProgram() {
     array_list *list = al_create();
-    al_print(list, &print_long_primitive);
-    al_push(list, (long *)5385);
-    al_print(list, &print_long_primitive);
-    al_push(list, (long *)434);
-    al_print(list, &print_long_primitive);
-    al_push(list, (long *)1);
-    al_print(list, &print_long_primitive);
-    al_push(list, (long *)69);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
+    al_pushLong(list, 24);
+    al_print(list, AL_PM_LONG);
+    al_pushLong(list, 434);
+    al_print(list, AL_PM_LONG);
+    al_pushLong(list, 1);
+    al_print(list, AL_PM_LONG);
+    al_pushLong(list, 42);
+    al_print(list, AL_PM_LONG);
 
     al_qsort(list, &cmp_long);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
 
     al_pop(list);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
     al_pop(list);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
     al_pop(list);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
     al_pop(list);
-    al_print(list, &print_long_primitive);
+    al_print(list, AL_PM_LONG);
 
     const size_t count = 100;
 
     for (int i = 0; i < count; ++i) {
-        if (i < count / 2) al_push(list, (long *)i);
+        if (i < count / 2) al_pushLong(list, i);
         else al_pop(list);
         printf("Size: %lu, Capacity: %lu - ", list->size, list->capacity);
-        al_print(list, &print_long_primitive);
+        al_print(list, AL_PM_LONG);
     }
 
     al_destroy(list);
 }
 
 void testLinkedList() {
+    size_t sized = sizeof(al_data);
+    printf("Size: %lu\n", sized);
     linked_list bruh = ll_init();
+    ll_data arrInit[6] = {5, 420, 14, 49248, -424, 42};
     linked_list *list = &bruh;
-    ll_addInt(list, 5);
-    ll_addInt(list, 420);
-    ll_addInt(list, 14);
-    ll_addInt(list, 49248);
-    ll_addInt(list, -424);
-    ll_addInt(list, 42);
+    ll_setFromArray(list, arrInit, 6);
     ll_print(list, LL_PM_INT);
     ll_data d = ll_getData(list, 3);
     printf("%d\n", d.intVal);
@@ -120,5 +118,18 @@ int main(void) {
     testArrayList();
     testArrayListProgram();
     testLinkedList();
+
+    array_list list = al_init();
+    al_allocate(&list);
+
+    al_pushPtr(&list, "hello");
+    al_pushPtr(&list, "world");
+    al_pushPtr(&list, "it's");
+    al_pushPtr(&list, "me");
+
+    al_print(&list, AL_PM_STRING);
+
+    al_freeArray(&list);
+
     return 0;
 }
