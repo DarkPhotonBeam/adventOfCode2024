@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "../src/arrayList.h"
+#include "../src/linkedList.h"
 #include "../src/helpers.h"
 
 void print_long_primitive(void *item) {
@@ -67,8 +68,42 @@ void testArrayListProgram() {
     al_destroy(list);
 }
 
+void testLinkedList() {
+    linked_list *list = ll_create();
+    ll_addInt(list, 5);
+    ll_addInt(list, 420);
+    ll_addInt(list, 14);
+    ll_addInt(list, 49248);
+    ll_addInt(list, -424);
+    ll_addInt(list, 42);
+    ll_print(list, INT);
+    ll_data d = ll_getData(list, 3);
+    printf("%d\n", d.intVal);
+    ll_data num = {.intVal = 10000};
+    ll_insert(list, num, 3);
+    ll_print(list, INT);
+    ll_delete(list, 3);
+    ll_print(list, INT);
+    ll_delete(list, 3);
+    ll_print(list, INT);
+    ll_delete(list, 3);
+    ll_print(list, INT);
+    ll_delete(list, 3);
+    ll_print(list, INT);
+    ll_delete(list, 0);
+    ll_print(list, INT);
+    ll_delete(list, 0);
+    ll_print(list, INT);
+    ll_addInt(list, 666);
+    ll_print(list, INT);
+    ll_delete(list, 0);
+    ll_print(list, INT);
+    ll_destroy(list);
+}
+
 int main(void) {
     testArrayList();
     testArrayListProgram();
+    testLinkedList();
     return 0;
 }

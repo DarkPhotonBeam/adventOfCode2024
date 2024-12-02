@@ -9,6 +9,10 @@ add_executable(adventOfCode2024 src/main.c
         src/helpers.c
         src/helpers.h
         src/arrayList.h
+        src/linkedList.c
+        src/linkedList.h
 )
 add_executable(tests tests/main.test.c src/arrayList.h
-        src/arrayList.c src/helpers.h src/helpers.c)
+        src/arrayList.c src/helpers.h src/helpers.c
+        src/linkedList.c
+        src/linkedList.h)
