@@ -38,7 +38,7 @@ typedef enum {
 // Allocates memory for a linked list on the heap and returns pointer to it
 linked_list *ll_create();
 
-// Initializes empty linked_list on the stack
+// Initializes empty linked_list on the stack, do not forget to call ll_freeNodes when you don't need the list anymore
 #define ll_init() {.size = 0, .head = NULL, .tail = NULL}
 
 // Adds a new node with the provided data at the end/head of the linked list
@@ -70,6 +70,9 @@ ll_data ll_removeFirst(linked_list *list);
 
 // Returns 1 if linked list is empty, 0 otherwise
 int ll_isEmpty(const linked_list *list);
+
+// Destructively frees all nodes (makes linked list unusable)
+void ll_freeNodes(linked_list *list);
 
 // Frees memory of linked list
 void ll_destroy(linked_list *list);

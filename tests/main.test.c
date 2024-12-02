@@ -99,6 +99,7 @@ void testLinkedList() {
     ll_print(list, LL_PM_INT);
     ll_delete(list, 0);
     ll_print(list, LL_PM_INT);
+    ll_freeNodes(list);
     //ll_destroy(list);
 }
 

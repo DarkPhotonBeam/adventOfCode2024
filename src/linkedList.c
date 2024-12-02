@@ -147,14 +147,18 @@ int ll_isEmpty(const linked_list *list) {
     return list->size == 0;
 }
 
-void ll_destroy(linked_list *list) {
-    if (list == NULL) return;
+void ll_freeNodes(linked_list *list) {
     ll_node *node = list->head;
     while (node != NULL) {
         ll_node *nextNode = node->prev;
         free(node);
         node = nextNode;
     }
+}
+
+void ll_destroy(linked_list *list) {
+    if (list == NULL) return;
+    ll_freeNodes(list);
     free(list);
     list = NULL;
 }
