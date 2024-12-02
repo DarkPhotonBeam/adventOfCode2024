@@ -35,8 +35,11 @@ typedef enum {
     LL_PM_PTR,
 } ll_print_mode;
 
-// Allocates memory for a linked list and returns pointer to it
+// Allocates memory for a linked list on the heap and returns pointer to it
 linked_list *ll_create();
+
+// Initializes empty linked_list on the stack
+#define ll_init() {.size = 0, .head = NULL, .tail = NULL}
 
 // Adds a new node with the provided data at the end/head of the linked list
 void ll_add(linked_list *list, ll_data data);

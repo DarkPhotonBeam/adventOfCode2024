@@ -69,7 +69,8 @@ void testArrayListProgram() {
 }
 
 void testLinkedList() {
-    linked_list *list = ll_create();
+    linked_list bruh = ll_init();
+    linked_list *list = &bruh;
     ll_addInt(list, 5);
     ll_addInt(list, 420);
     ll_addInt(list, 14);
@@ -98,7 +99,7 @@ void testLinkedList() {
     ll_print(list, LL_PM_INT);
     ll_delete(list, 0);
     ll_print(list, LL_PM_INT);
-    ll_destroy(list);
+    //ll_destroy(list);
 }
 
 int main(void) {
