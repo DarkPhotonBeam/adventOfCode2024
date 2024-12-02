@@ -76,28 +76,28 @@ void testLinkedList() {
     ll_addInt(list, 49248);
     ll_addInt(list, -424);
     ll_addInt(list, 42);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_data d = ll_getData(list, 3);
     printf("%d\n", d.intVal);
     ll_data num = {.intVal = 10000};
     ll_insert(list, num, 3);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 3);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 3);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 3);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 3);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 0);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 0);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_addInt(list, 666);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_delete(list, 0);
-    ll_print(list, INT);
+    ll_print(list, LL_PM_INT);
     ll_destroy(list);
 }
 

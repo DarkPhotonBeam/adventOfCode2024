@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+ll_node *ll_get(linked_list *list, size_t index);
+
 linked_list *ll_create() {
     linked_list *list = malloc(sizeof(linked_list));
     if (list == NULL) {
@@ -154,6 +156,7 @@ void ll_destroy(linked_list *list) {
         node = nextNode;
     }
     free(list);
+    list = NULL;
 }
 
 void ll_print(const linked_list *list, const ll_print_mode print_mode) {
@@ -162,16 +165,16 @@ void ll_print(const linked_list *list, const ll_print_mode print_mode) {
     printf("[");
     while (node != NULL) {
         switch (print_mode) {
-            case INT:
+            case LL_PM_INT:
                 printf("%d", node->data.intVal);
                 break;
-            case DOUBLE:
+            case LL_PM_DOUBLE:
                 printf("%f", node->data.doubleVal);
                 break;
-            case LONG:
+            case LL_PM_LONG:
                 printf("%ld", node->data.longVal);
                 break;
-            case PTR:
+            case LL_PM_PTR:
                 printf("%p", node->data.ptr);
                 break;
             default:

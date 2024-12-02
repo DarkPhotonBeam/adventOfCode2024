@@ -29,25 +29,49 @@ typedef struct {
 } linked_list;
 
 typedef enum {
-    INT,
-    DOUBLE,
-    LONG,
-    PTR,
+    LL_PM_INT,
+    LL_PM_DOUBLE,
+    LL_PM_LONG,
+    LL_PM_PTR,
 } ll_print_mode;
 
+// Allocates memory for a linked list and returns pointer to it
 linked_list *ll_create();
+
+// Adds a new node with the provided data at the end/head of the linked list
 void ll_add(linked_list *list, ll_data data);
+
+// Inserts a new node with the provided data at the specified index
 void ll_insert(linked_list *list, ll_data data, size_t index);
+
+// Wrapper function for ll_add for ints
 void ll_addInt(linked_list *list, int data);
+
+// Wrapper function for ll_add for doubles
 void ll_addDouble(linked_list *list, double data);
+
+// Wrapper function for ll_add for longs
 void ll_addLong(linked_list *list, long data);
+
+// Wrapper function for ll_add for ptrs
 void ll_addPtr(linked_list *list, void *data);
+
+// Deletes and frees node at index
 ll_data ll_delete(linked_list *list, size_t index);
-ll_node *ll_get(linked_list *list, size_t index);
+
+// Returns the data in the node at the specified index
 ll_data ll_getData(linked_list *list, size_t index);
+
+// Removes and frees the first/tail node of the linked list and returns data of removed node
 ll_data ll_removeFirst(linked_list *list);
+
+// Returns 1 if linked list is empty, 0 otherwise
 int ll_isEmpty(const linked_list *list);
+
+// Frees memory of linked list
 void ll_destroy(linked_list *list);
+
+// Prints the linked list. print_mode determines formatting of data (LL_PM_INT, LL_PM_DOUBLE, LL_PM_LONG, LL_PM_PTR)
 void ll_print(const linked_list *list, ll_print_mode print_mode);
 
 
