@@ -58,6 +58,8 @@ void day3(char *input) {
                 s += pmatch[0].rm_eo;
         }
 
+        regfree(&preg);
+
         // Parse sanitized text
         long total = 0;
         long condTotal = 0;
