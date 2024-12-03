@@ -53,6 +53,20 @@ void text_clear(text_t *text) {
         text->str = realloc(text->str, text->__capacity * sizeof(char));
 }
 
+void text_writeToStream(const text_t *text, FILE *stream) {
+        fprintf(stream, "%s", text->str);
+}
+
+void text_writeToFile(const text_t *text, const char *path) {
+        FILE *f;
+        if ( (f = fopen(path, "w")) == NULL ) {
+                fprintf(stderr, "Could not open file %s\n", path);
+                return;
+        }
+        text_writeToStream(text, f);
+        fclose(f);
+}
+
 long text_toLong(text_t *text) {
         char *endptr;
         const long result = strtol(text->str, &endptr, 10);

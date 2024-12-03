@@ -5,6 +5,7 @@
 #ifndef TEXT_H
 #define TEXT_H
 #include <stddef.h>
+#include <stdio.h>
 
 #define TEXT_INITIAL_CAPACITY 8
 
@@ -23,6 +24,9 @@ void text_append(text_t *text, const char *str, const size_t n);
 void text_print(const text_t *text);
 
 void text_clear(text_t *text);
+
+void text_writeToFile(const text_t *text, const char *path);
+void text_writeToStream(const text_t *text, FILE *stream);
 
 long text_toLong(text_t *text);
 

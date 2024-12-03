@@ -54,7 +54,7 @@ void day3(char *input) {
         }
 
         //printf("re_nsub: %lu\n", preg.re_nsub);
-        text_print(text);
+        //text_print(text);
 
         char *s = text->str;
 
@@ -68,7 +68,8 @@ void day3(char *input) {
                 s += pmatch[0].rm_eo;
         }
 
-        text_print(sanitized_text);
+        //text_print(sanitized_text);
+        text_writeToFile(sanitized_text, "../outputs/day3.txt");
 
         // Parse sanitized text
         long total = 0;
