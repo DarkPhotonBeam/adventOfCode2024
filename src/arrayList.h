@@ -60,6 +60,9 @@ al_data al_get(const array_list *list, const size_t index);
 
 void al_set(const array_list *list, const size_t index, al_data data);
 
+// Removes all array entries, sets size to 0
+void al_clear(array_list *list);
+
 void al_freeArray(const array_list *list);
 
 void al_destroy(array_list *list);

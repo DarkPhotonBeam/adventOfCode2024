@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "day1.h"
-#include "helpers.h"
+#include "../helpers.h"
 
 #define ARR_INITIAL_SIZE 8
 

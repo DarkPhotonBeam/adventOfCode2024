@@ -15,13 +15,13 @@ array_list *al_create() {
 }
 
 void al_allocate(array_list *list) {
-    list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(void *));
+    list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(al_data));
 }
 
 void al_push(array_list *list, const al_data data) {
     if (list->size >= list->capacity) {
         list->capacity = list->capacity << 1;
-        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(al_data));
     }
     list->data[list->size++] = data;
 }
@@ -50,7 +50,7 @@ al_data al_pop(array_list *list) {
     const al_data data = list->data[--(list->size)];
     if (list->size <= (list->capacity >> 1) && list->capacity > ARRAY_LIST_MIN_CAPACITY) {
         list->capacity >>= 1;
-        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(al_data));
     }
     return data;
 }
@@ -61,6 +61,12 @@ al_data al_get(const array_list *list, const size_t index) {
 
 void al_set(const array_list *list, const size_t index, const al_data data) {
     list->data[index] = data;
+}
+
+void al_clear(array_list *list) {
+    list->data = (al_data *) realloc( list->data, ARRAY_LIST_MIN_CAPACITY * sizeof(al_data) );
+    list->size = 0;
+    list->capacity = ARRAY_LIST_MIN_CAPACITY;
 }
 
 void al_freeArray(const array_list *list) {
