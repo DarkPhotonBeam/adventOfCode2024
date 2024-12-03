@@ -124,6 +124,6 @@ void al_print(const array_list *list, al_print_mode print_mode) {
     printf("]\n");
 }
 
-void al_qsort(const array_list *list, const __compar_fn_t cmp_fn) {
-    qsort(list->data, list->size, sizeof(void *), cmp_fn);
+void al_qsort(const array_list *list, int (*compar)(const void *, const void *)) {
+    qsort(list->data, list->size, sizeof(void *), compar);
 }

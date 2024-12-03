@@ -177,6 +177,7 @@ void day3(char *input) {
 
         for (unsigned int i = 0; i < sanitized_text->length; ++i) {
                 char ch = sanitized_text->str[i];
+		long prod;
                 switch (phase) {
                         case DO:
                                 enabled = 1;
@@ -200,9 +201,9 @@ void day3(char *input) {
                                 else text_pushc(rNum, ch);
                                 break;
                         case SUFFIX:
-                                long mulRes = text_toLong(lNum) * text_toLong(rNum);
-                                total += mulRes;
-                                if (enabled) condTotal += mulRes;
+                                prod = text_toLong(lNum) * text_toLong(rNum);
+                                total += prod;
+                                if (enabled) condTotal += prod;
 
                                 text_clear(lNum);
                                 text_clear(rNum);

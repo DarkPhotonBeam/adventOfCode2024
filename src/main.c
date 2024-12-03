@@ -38,13 +38,13 @@ void executeDay(int day) {
     if (day < 1 || day > MAX_DAY) return;
     switch (day) {
         case 1:
-            day1("../inputs/day1.txt");
+            day1("./inputs/day1.txt");
             break;
         case 2:
-            day2("../inputs/day2.txt");
+            day2("./inputs/day2.txt");
             break;
         case 3:
-            day3("../inputs/day3.txt");
+            day3("./inputs/day3.txt");
             break;
         default:
             break;

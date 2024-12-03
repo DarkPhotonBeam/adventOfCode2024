@@ -2,3 +2,8 @@ cmake-build-debug
 cmake-build-release
 inputs
 outputs
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+adventOfCode2024

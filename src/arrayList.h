@@ -74,6 +74,6 @@ void al_destroy(array_list *list);
 
 void al_print(const array_list *list, al_print_mode print_mode);
 
-void al_qsort(const array_list *list, __compar_fn_t cmp_fn);
+void al_qsort(const array_list *list, int (*compar)(const void *, const void *));
 
 #endif //ARRAYLIST_H

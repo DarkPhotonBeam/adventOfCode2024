@@ -19,8 +19,3 @@ add_executable(adventOfCode2024 src/main.c
         src/text.c
         src/text.h
 )
-add_executable(tests tests/main.test.c src/arrayList.h
-        src/arrayList.c src/helpers.h src/helpers.c
-        src/linkedList.c
-        src/linkedList.h
-)
