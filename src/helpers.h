@@ -15,4 +15,6 @@ int sgn_cmp(int a, int b);
 
 void findMinMax(int *arr, const size_t size, int *min, int *max);
 
+#define MAX(a, b) (a > b ? a : b)
+
 #endif //HELPERS_H

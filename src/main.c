@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "days/day1.h"
 #include "days/day2.h"
+#include "days/day3.h"
 
 #define MAX_DAY 3
 
@@ -42,7 +43,7 @@ void executeDay(int day) {
             day2("../inputs/day2.txt");
             break;
         case 3:
-            day3("../inputs/day3_example.txt");
+            day3("../inputs/day3.txt");
             break;
         default:
             break;

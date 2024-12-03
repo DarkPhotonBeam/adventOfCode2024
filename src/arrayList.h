@@ -13,30 +13,30 @@
 // TODO: Unit Tests
 
 typedef union {
-    char charVal;
-    short shortVal;
-    int intVal;
-    float floatVal;
-    double doubleVal;
-    long longVal;
-    void *ptr;
+        char charVal;
+        short shortVal;
+        int intVal;
+        float floatVal;
+        double doubleVal;
+        long longVal;
+        void *ptr;
 } al_data;
 
 typedef enum {
-    AL_PM_CHAR,
-    AL_PM_SHORT,
-    AL_PM_INT,
-    AL_PM_FLOAT,
-    AL_PM_DOUBLE,
-    AL_PM_LONG,
-    AL_PM_PTR,
-    AL_PM_STRING,
+        AL_PM_CHAR,
+        AL_PM_SHORT,
+        AL_PM_INT,
+        AL_PM_FLOAT,
+        AL_PM_DOUBLE,
+        AL_PM_LONG,
+        AL_PM_PTR,
+        AL_PM_STRING,
 } al_print_mode;
 
 typedef struct {
-    size_t size;
-    size_t capacity;
-    al_data *data;
+        size_t size;
+        size_t capacity;
+        al_data *data;
 } array_list;
 
 array_list *al_create();
@@ -47,6 +47,8 @@ array_list *al_create();
 void al_allocate(array_list *list);
 
 void al_push(array_list *list, al_data data);
+
+void al_pushChar(array_list *list, char data);
 
 void al_pushLong(array_list *list, long data);
 

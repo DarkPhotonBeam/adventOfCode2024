@@ -16,6 +16,8 @@ add_executable(adventOfCode2024 src/main.c
         src/days/day2.h
         src/days/day3.c
         src/days/day3.h
+        src/text.c
+        src/text.h
 )
 add_executable(tests tests/main.test.c src/arrayList.h
         src/arrayList.c src/helpers.h src/helpers.c

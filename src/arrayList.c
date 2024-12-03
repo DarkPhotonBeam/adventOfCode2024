@@ -26,6 +26,12 @@ void al_push(array_list *list, const al_data data) {
     list->data[list->size++] = data;
 }
 
+void al_pushChar(array_list *list, const char data) {
+    al_data d;
+    d.charVal = data;
+    al_push(list, d);
+}
+
 void al_pushLong(array_list *list, const long data) {
     al_data d;
     d.longVal = data;
