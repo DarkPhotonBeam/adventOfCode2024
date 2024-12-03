@@ -6,5 +6,6 @@
 #define DAY3_H
 
 void day3(char *input);
+void day3_alt(char *input);
 
 #endif //DAY3_H

@@ -67,6 +67,9 @@ void al_clear(array_list *list);
 
 void al_freeArray(const array_list *list);
 
+// Can be used if all entries are pointers acquired by malloc calls. Frees all said pointers and sets them to NULL (only use if you know what you're doing)
+void al_freeEntries(array_list *list);
+
 void al_destroy(array_list *list);
 
 void al_print(const array_list *list, al_print_mode print_mode);

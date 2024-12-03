@@ -84,6 +84,13 @@ void al_destroy(array_list *list) {
     free(list);
 }
 
+void al_freeEntries(array_list *list) {
+    for (size_t i = 0; i < list->size; ++i) {
+        free(list->data[i].ptr);
+        list->data[i].ptr = NULL;
+    }
+}
+
 void al_print(const array_list *list, al_print_mode print_mode) {
     printf("[");
     for (unsigned int i = 0; i < list->size; ++i) {

@@ -3,6 +3,7 @@
 #include "days/day1.h"
 #include "days/day2.h"
 #include "days/day3.h"
+#include "helpers.h"
 
 #define MAX_DAY 3
 
@@ -52,6 +53,5 @@ void executeDay(int day) {
 
 int main(int argc, char *argv[]) {
     executeDay( getSelectedDay(argc, argv) );
-
     return 0;
 }
