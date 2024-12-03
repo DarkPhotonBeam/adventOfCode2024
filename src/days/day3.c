@@ -31,12 +31,10 @@ void day3(char *input) {
                 exit(1);
         }
 
-        // mul\([0-9]+,[0-9]+\)
-
         text_t *text = text_create();
         text_t *sanitized_text = text_create();
 
-
+        // Read Input
         int c;
         while ( (c = getc(f)) != EOF ) {
                 if (c == '\n') continue;
@@ -45,31 +43,20 @@ void day3(char *input) {
 
         regex_t preg;
         regmatch_t pmatch[1];
-        regoff_t off, len;
 
         int regcompErr = regcomp(&preg, "mul\\([0-9]+,[0-9]+\\)|do\\(\\)|don't\\(\\)", REG_EXTENDED);
-
-        if (regcompErr) {
-                fprintf(stderr, "regcomp failed\n");
-        }
-
-        //printf("re_nsub: %lu\n", preg.re_nsub);
-        //text_print(text);
+        if (regcompErr) fprintf(stderr, "regcomp failed\n");
 
         char *s = text->str;
 
         for (unsigned int i = 0; ; i++) {
                 if (regexec(&preg, s, ARRAY_SIZE(pmatch), pmatch, 0))
                         break;
-                off = pmatch[0].rm_so;
-                len = pmatch[0].rm_eo - pmatch[0].rm_so;
+                const regoff_t len = pmatch[0].rm_eo - pmatch[0].rm_so;
                 text_append(sanitized_text, s + pmatch[0].rm_so, len);
                 text_pushc(sanitized_text, '\n');
                 s += pmatch[0].rm_eo;
         }
-
-        //text_print(sanitized_text);
-        text_writeToFile(sanitized_text, "../outputs/day3.txt");
 
         // Parse sanitized text
         long total = 0;
