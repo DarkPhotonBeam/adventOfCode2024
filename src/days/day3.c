@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <regex.h>
-#include <stdint.h>
+#include <time.h>
 
 #include "../arrayList.h"
 #include "../text.h"
@@ -24,6 +24,8 @@ typedef enum {
 } parse_phase;
 
 void day3(char *input) {
+        float totalTime = 0;
+        clock_t s0 = clock();
         FILE *f = NULL;
 
         if ((f = fopen(input, "r")) == NULL) {
@@ -40,6 +42,16 @@ void day3(char *input) {
                 if (c == '\n') continue;
                 text_pushc(text, c);
         }
+
+        fclose(f);
+
+        clock_t s1 = clock();
+
+        float seconds = (float)(s1-s0) / CLOCKS_PER_SEC;
+        totalTime += seconds;
+        printf("READING TOOK %f ms\n", seconds * 1000);
+
+        s0 = clock();
 
         regex_t preg;
         regmatch_t pmatch[1];
@@ -59,6 +71,12 @@ void day3(char *input) {
         }
 
         regfree(&preg);
+
+        s1 = clock();
+        seconds = (float)(s1-s0) / CLOCKS_PER_SEC;
+        totalTime += seconds;
+        printf("SANITIZING TOOK %f ms\n", seconds * 1000);
+        s0 = clock();
 
         // Parse sanitized text
         long total = 0;
@@ -105,7 +123,13 @@ void day3(char *input) {
                 }
         }
 
-        printf("PART ONE\nTotal: %ld\n\n", total);
+        s1 = clock();
+        seconds = (float)(s1-s0) / CLOCKS_PER_SEC;
+        totalTime += seconds;
+        printf("PARSING TOOK %f ms\n", seconds * 1000);
+        s0 = clock();
+
+        printf("\nPART ONE\nTotal: %ld\n\n", total);
         printf("PART TWO\nConditional Total: %ld\n\n", condTotal);
 
         text_destroy(lNum);
@@ -118,5 +142,9 @@ void day3(char *input) {
         text_destroy(sanitized_text);
         text = NULL;
         sanitized_text = NULL;
-        fclose(f);
+        s1 = clock();
+        seconds = (float)(s1-s0) / CLOCKS_PER_SEC;
+        totalTime += seconds;
+        printf("CLEANUP TOOK %f ms\n", seconds * 1000);
+        printf("DAY3 TIME %f ms\n", totalTime * 1000);
 }
