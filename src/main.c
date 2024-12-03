@@ -44,7 +44,7 @@ void executeDay(int day) {
             day2("./inputs/day2.txt");
             break;
         case 3:
-            day3("./inputs/day3.txt");
+            day3_alt("./inputs/day3.txt");
             break;
         default:
             break;

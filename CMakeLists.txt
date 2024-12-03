@@ -3,6 +3,8 @@ project(adventOfCode2024 C)
 
 set(CMAKE_C_STANDARD 11)
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/inputs/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/inputs/)
+
 add_executable(adventOfCode2024 src/main.c
         src/days/day1.c
         src/days/day1.h
