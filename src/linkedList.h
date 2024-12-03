@@ -8,6 +8,9 @@
 #include <stddef.h>
 
 typedef union {
+    char charVal;
+    float floatVal;
+    short shortVal;
     int intVal;
     double doubleVal;
     long longVal;
@@ -29,10 +32,13 @@ typedef struct {
 } linked_list;
 
 typedef enum {
+    LL_PM_CHAR,
+    LL_PM_SHORT,
     LL_PM_INT,
+    LL_PM_FLOAT,
     LL_PM_DOUBLE,
     LL_PM_LONG,
-    LL_PM_PTR,
+    LL_PM_PTR
 } ll_print_mode;
 
 // Allocates memory for a linked list on the heap and returns pointer to it
@@ -49,6 +55,15 @@ void ll_insert(linked_list *list, ll_data data, size_t index);
 
 // Wrapper function for ll_add for ints
 void ll_addInt(linked_list *list, int data);
+
+// Wrapper function for ll_add for doubles
+void ll_addChar(linked_list *list, char data);
+
+// Wrapper function for ll_add for doubles
+void ll_addFloat(linked_list *list, float data);
+
+// Wrapper function for ll_add for doubles
+void ll_addShort(linked_list *list, short data);
 
 // Wrapper function for ll_add for doubles
 void ll_addDouble(linked_list *list, double data);

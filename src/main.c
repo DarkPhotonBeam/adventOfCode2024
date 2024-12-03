@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "day1.h"
-#include "day2.h"
+#include "days/day1.h"
+#include "days/day2.h"
+#include "days/day3.h"
+#include "helpers.h"
 
-#define MAX_DAY 2
+#define MAX_DAY 3
 
 int getSelectedDay(int argc, char **argv) {
     int selectedDay = 1;
@@ -36,10 +38,13 @@ void executeDay(int day) {
     if (day < 1 || day > MAX_DAY) return;
     switch (day) {
         case 1:
-            day1("../inputs/day1.txt");
+            day1("./inputs/day1.txt");
             break;
         case 2:
-            day2("../inputs/day2.txt");
+            day2("./inputs/day2.txt");
+            break;
+        case 3:
+            day3("./inputs/day3.txt");
             break;
         default:
             break;
@@ -48,6 +53,5 @@ void executeDay(int day) {
 
 int main(int argc, char *argv[]) {
     executeDay( getSelectedDay(argc, argv) );
-
     return 0;
 }

@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "arrayList.h"
-#include "helpers.h"
-#include "linkedList.h"
+#include "../arrayList.h"
+#include "../helpers.h"
+#include "../linkedList.h"
 
 int isSafeReport(const array_list *report) {
     if (report->size <= 1) return 1;

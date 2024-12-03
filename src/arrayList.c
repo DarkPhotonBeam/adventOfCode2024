@@ -15,15 +15,21 @@ array_list *al_create() {
 }
 
 void al_allocate(array_list *list) {
-    list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(void *));
+    list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(al_data));
 }
 
 void al_push(array_list *list, const al_data data) {
     if (list->size >= list->capacity) {
         list->capacity = list->capacity << 1;
-        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(al_data));
     }
     list->data[list->size++] = data;
+}
+
+void al_pushChar(array_list *list, const char data) {
+    al_data d;
+    d.charVal = data;
+    al_push(list, d);
 }
 
 void al_pushLong(array_list *list, const long data) {
@@ -50,7 +56,7 @@ al_data al_pop(array_list *list) {
     const al_data data = list->data[--(list->size)];
     if (list->size <= (list->capacity >> 1) && list->capacity > ARRAY_LIST_MIN_CAPACITY) {
         list->capacity >>= 1;
-        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(void *));
+        list->data = (al_data *) realloc(list->data, list->capacity * sizeof(al_data));
     }
     return data;
 }
@@ -63,6 +69,12 @@ void al_set(const array_list *list, const size_t index, const al_data data) {
     list->data[index] = data;
 }
 
+void al_clear(array_list *list) {
+    list->data = (al_data *) realloc( list->data, ARRAY_LIST_MIN_CAPACITY * sizeof(al_data) );
+    list->size = 0;
+    list->capacity = ARRAY_LIST_MIN_CAPACITY;
+}
+
 void al_freeArray(const array_list *list) {
     free(list->data);
 }
@@ -70,6 +82,13 @@ void al_freeArray(const array_list *list) {
 void al_destroy(array_list *list) {
     al_freeArray(list);
     free(list);
+}
+
+void al_freeEntries(array_list *list) {
+    for (size_t i = 0; i < list->size; ++i) {
+        free(list->data[i].ptr);
+        list->data[i].ptr = NULL;
+    }
 }
 
 void al_print(const array_list *list, al_print_mode print_mode) {
@@ -105,6 +124,6 @@ void al_print(const array_list *list, al_print_mode print_mode) {
     printf("]\n");
 }
 
-void al_qsort(const array_list *list, const __compar_fn_t cmp_fn) {
-    qsort(list->data, list->size, sizeof(void *), cmp_fn);
+void al_qsort(const array_list *list, int (*compar)(const void *, const void *)) {
+    qsort(list->data, list->size, sizeof(void *), compar);
 }

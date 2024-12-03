@@ -63,9 +63,27 @@ void ll_insert(linked_list *list, ll_data data, size_t index) {
     ++list->size;
 }
 
+void ll_addChar(linked_list *list, const char data) {
+    ll_data d;
+    d.charVal = data;
+    ll_add(list, d);
+}
+
 void ll_addInt(linked_list *list, const int data) {
     ll_data d;
     d.intVal = data;
+    ll_add(list, d);
+}
+
+void ll_addShort(linked_list *list, const short data) {
+    ll_data d;
+    d.shortVal = data;
+    ll_add(list, d);
+}
+
+void ll_addFloat(linked_list *list, const float data) {
+    ll_data d;
+    d.floatVal = data;
     ll_add(list, d);
 }
 
@@ -180,9 +198,16 @@ void ll_print(const linked_list *list, const ll_print_mode print_mode) {
     printf("[");
     while (node != NULL) {
         switch (print_mode) {
+            case LL_PM_SHORT:
+                printf("%hd", node->data.shortVal);
+                break;
             case LL_PM_INT:
                 printf("%d", node->data.intVal);
                 break;
+            case LL_PM_CHAR:
+                printf("%c", node->data.charVal);
+                break;
+            case LL_PM_FLOAT:
             case LL_PM_DOUBLE:
                 printf("%f", node->data.doubleVal);
                 break;

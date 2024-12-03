@@ -13,30 +13,30 @@
 // TODO: Unit Tests
 
 typedef union {
-    char charVal;
-    short shortVal;
-    int intVal;
-    float floatVal;
-    double doubleVal;
-    long longVal;
-    void *ptr;
+        char charVal;
+        short shortVal;
+        int intVal;
+        float floatVal;
+        double doubleVal;
+        long longVal;
+        void *ptr;
 } al_data;
 
 typedef enum {
-    AL_PM_CHAR,
-    AL_PM_SHORT,
-    AL_PM_INT,
-    AL_PM_FLOAT,
-    AL_PM_DOUBLE,
-    AL_PM_LONG,
-    AL_PM_PTR,
-    AL_PM_STRING,
+        AL_PM_CHAR,
+        AL_PM_SHORT,
+        AL_PM_INT,
+        AL_PM_FLOAT,
+        AL_PM_DOUBLE,
+        AL_PM_LONG,
+        AL_PM_PTR,
+        AL_PM_STRING,
 } al_print_mode;
 
 typedef struct {
-    size_t size;
-    size_t capacity;
-    al_data *data;
+        size_t size;
+        size_t capacity;
+        al_data *data;
 } array_list;
 
 array_list *al_create();
@@ -47,6 +47,8 @@ array_list *al_create();
 void al_allocate(array_list *list);
 
 void al_push(array_list *list, al_data data);
+
+void al_pushChar(array_list *list, char data);
 
 void al_pushLong(array_list *list, long data);
 
@@ -60,12 +62,18 @@ al_data al_get(const array_list *list, const size_t index);
 
 void al_set(const array_list *list, const size_t index, al_data data);
 
+// Removes all array entries, sets size to 0
+void al_clear(array_list *list);
+
 void al_freeArray(const array_list *list);
+
+// Can be used if all entries are pointers acquired by malloc calls. Frees all said pointers and sets them to NULL (only use if you know what you're doing)
+void al_freeEntries(array_list *list);
 
 void al_destroy(array_list *list);
 
 void al_print(const array_list *list, al_print_mode print_mode);
 
-void al_qsort(const array_list *list, __compar_fn_t cmp_fn);
+void al_qsort(const array_list *list, int (*compar)(const void *, const void *));
 
 #endif //ARRAYLIST_H
