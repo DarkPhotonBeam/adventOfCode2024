@@ -13,6 +13,8 @@
 #define W_FWD "XMAS"
 #define W_INV "SMAX"
 
+#include <time.h>
+
 char cAt(array_list *rows, size_t row, size_t col) {
     return text_get(al_get(rows, row).ptr, col);
 }
@@ -57,6 +59,7 @@ int hasXMAS(array_list *rows, size_t width, size_t row, size_t col) {
 }
 
 void day4(char *input) {
+    clock_t s0 = clock();
     FILE *f = NULL;
 
     if ((f = fopen(input, "r")) == NULL) {
@@ -77,6 +80,8 @@ void day4(char *input) {
         }
     }
 
+    fclose(f);
+
     size_t width = ((text_t *)al_get(rows, 0).ptr)->length;
     size_t total = 0;
     size_t x_mas_total = 0;
@@ -91,8 +96,13 @@ void day4(char *input) {
     printf("PART ONE\nTotal: %lu\n\n", total);
     printf("PART TWO\nTotal: %lu\n\n", x_mas_total);
 
-    al_freeEntries(rows);
+    for (size_t row = 0; row < rows->size; ++row) {
+        text_destroy(al_get(rows, row).ptr);
+    }
+
     al_destroy(rows);
 
-    fclose(f);
+    clock_t s1 = clock();
+    float sec = (float)(s1-s0) / CLOCKS_PER_SEC;
+    printf("DAY 4 TOOK %f ms\n", sec * 1000);
 }
