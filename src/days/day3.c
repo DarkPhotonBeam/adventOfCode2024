@@ -158,6 +158,8 @@ void day3(char *input) {
                 s += pmatch[0].rm_eo;
         }
 
+        text_writeToFile(sanitized_text, "test.txt");
+
         regfree(&preg);
 
         s1 = clock();
@@ -177,7 +179,7 @@ void day3(char *input) {
 
         for (unsigned int i = 0; i < sanitized_text->length; ++i) {
                 char ch = sanitized_text->str[i];
-		long prod;
+                long prod;
                 switch (phase) {
                         case DO:
                                 enabled = 1;

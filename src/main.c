@@ -4,8 +4,9 @@
 #include "days/day1.h"
 #include "days/day2.h"
 #include "days/day3.h"
+#include "days/day4.h"
 
-#define MAX_DAY 3
+#define MAX_DAY 4
 
 int getSelectedDay(int argc, char **argv) {
     int selectedDay = 1;
@@ -44,7 +45,10 @@ void executeDay(int day) {
             day2("./inputs/day2.txt");
             break;
         case 3:
-            day3_alt("./inputs/day3.txt");
+            day3("./inputs/day3.txt");
+            break;
+        case 4:
+            day4("./inputs/day4_example.txt");
             break;
         default:
             break;

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.18)
 project(adventOfCode2024 C)
 
 set(CMAKE_C_STANDARD 11)
@@ -22,4 +22,4 @@ add_executable(adventOfCode2024 src/main.c
         src/text.h
         src/graph.c
         src/graph.h
-)
+        src/days/day4.c src/days/day4.h)

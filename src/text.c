@@ -30,6 +30,10 @@ void text_pushc(text_t *text, char c) {
         text->str[text->length] = '\0';
 }
 
+char text_get(text_t *text, size_t index) {
+    return text->str[index];
+}
+
 void text_append(text_t *text, const char *str, const size_t n) {
         const size_t strLen = n;
         if (text->length + strLen > text->__capacity - 1) {
