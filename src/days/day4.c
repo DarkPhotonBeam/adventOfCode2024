@@ -53,7 +53,7 @@ int hasXMAS(array_list *rows, size_t width, size_t row, size_t col) {
     if (col == 0 || col == width-1 || row == 0 || row == rows->size-1 || cAt(rows, row, col) != 'A') return 0;
     int diag1 = (cAt(rows, row-1, col-1) == 'M' && cAt(rows, row+1, col+1) == 'S') || (cAt(rows, row-1, col-1) == 'S' && cAt(rows, row+1, col+1) == 'M');
     int diag2 = (cAt(rows, row+1, col-1) == 'M' && cAt(rows, row-1, col+1) == 'S') || (cAt(rows, row+1, col-1) == 'S' && cAt(rows, row-1, col+1) == 'M');
-    return diag1 || diag2;
+    return diag1 && diag2;
 }
 
 void day4(char *input) {
