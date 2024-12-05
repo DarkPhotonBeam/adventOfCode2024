@@ -161,7 +161,8 @@ void day5(char *input) {
                                                 total2 += al_get(update, m).intVal;
                                         }
                                         //al_print(update, AL_PM_INT);
-                                        al_clear(update);
+                                        al_destroy(update);
+                                        update = al_create();
                                         currValid = 1;
                                 }
                         }
