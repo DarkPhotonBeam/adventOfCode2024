@@ -26,6 +26,10 @@ int cmp_long_rev(const void *a, const void *b) {
     return -cmp_long(a, b);
 }
 
+int is_digit(const char c) {
+    return c >= '0' && c <= '9';
+}
+
 int sgn_cmp(int a, int b) {
     return (a < 0 && b < 0) || (a >= 0 && b >= 0);
 }

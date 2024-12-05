@@ -22,4 +22,7 @@ add_executable(adventOfCode2024 src/main.c
         src/text.h
         src/graph.c
         src/graph.h
-        src/days/day4.c src/days/day4.h)
+        src/days/day4.c src/days/day4.h
+        src/days/day5.c
+        src/days/day5.h
+)

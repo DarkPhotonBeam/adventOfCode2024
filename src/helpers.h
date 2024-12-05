@@ -21,6 +21,8 @@ array_list *get_matches(const char *regex, const char *text);
 // Returns 1 if a and b have same sign, 0 otherwise
 int sgn_cmp(int a, int b);
 
+int is_digit(const char c);
+
 // Iterates through array and stores min and max values in provided variables
 void findMinMax(int *arr, const size_t size, int *min, int *max);
 
