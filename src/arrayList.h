@@ -56,6 +56,8 @@ void al_pushInt(array_list *list, int data);
 
 void al_pushPtr(array_list *list, void *data);
 
+void al_copyFrom(array_list *dest, array_list *src);
+
 al_data al_pop(array_list *list);
 
 al_data al_get(const array_list *list, const size_t index);

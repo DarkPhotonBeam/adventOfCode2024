@@ -18,6 +18,19 @@ void al_allocate(array_list *list) {
     list->data = malloc(ARRAY_LIST_INITIAL_CAPACITY * sizeof(al_data));
 }
 
+void al_copyFrom(array_list *dest, array_list *src) {
+    dest->size = src->size;
+    dest->capacity = src->capacity;
+    if (dest->data == NULL) {
+        dest->data = malloc(dest->capacity * sizeof(al_data));
+    } else {
+        dest->data = realloc(dest->data, dest->capacity * sizeof(al_data));
+    }
+    for (size_t i = 0; i < src->size; ++i) {
+        dest->data[i] = src->data[i];
+    }
+}
+
 void al_push(array_list *list, const al_data data) {
     if (list->size >= list->capacity) {
         list->capacity = list->capacity << 1;

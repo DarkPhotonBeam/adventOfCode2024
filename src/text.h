@@ -24,6 +24,9 @@ void text_append(text_t *text, const char *str, const size_t n);
 void text_print(const text_t *text);
 
 char text_get(text_t *text, size_t index);
+void text_set(text_t *text, size_t index, char ch);
+
+text_t *text_createCopy(text_t *text);
 
 void text_clear(text_t *text);
 

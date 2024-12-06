@@ -34,6 +34,18 @@ char text_get(text_t *text, size_t index) {
     return text->str[index];
 }
 
+void text_set(text_t *text, size_t index, char ch) {
+    text->str[index] = ch;
+}
+
+text_t *text_createCopy(text_t *text) {
+    text_t *newText = text_create();
+    for (size_t i = 0; i < text->length; ++i) {
+        text_pushc(newText, text_get(text, i));
+    }
+    return newText;
+}
+
 void text_append(text_t *text, const char *str, const size_t n) {
         const size_t strLen = n;
         if (text->length + strLen > text->__capacity - 1) {
